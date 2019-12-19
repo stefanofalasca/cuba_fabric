@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="it.osl.jscomponent.web.screens.prodotto">
+    <data>
+        <instance id="prodottoDc"
+                  class="it.osl.jscomponent.entity.Prodotto"
+                  view="_local">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <button id="addCircleBtn" caption="Nuovo Cerchio" invoke="onAddCircleBtnClick"/>
+
+        <jsComponent id="fabric" initFunctionName="it_osl_jscomponent_web_screens_Fabric" height="1024"
+                     width="768">
+            <dependencies>
+                <dependency path="http://code.jquery.com/jquery-3.4.1.min.js"/>
+                <dependency path="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.5.0/fabric.min.js" type="JAVASCRIPT"/>
+                <dependency path="vaadin://fabric/fabric-connector.js" type="JAVASCRIPT"/>
+            </dependencies>
+        </jsComponent>
+        <form id="form" dataContainer="prodottoDc">
+            <column width="250px">
+                <textField id="codiceField" property="codice"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

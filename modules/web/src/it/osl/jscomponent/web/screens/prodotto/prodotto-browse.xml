@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="prodottoesTable"
+        messagesPack="it.osl.jscomponent.web.screens.prodotto">
+    <data readOnly="true">
+        <collection id="prodottoesDc"
+                    class="it.osl.jscomponent.entity.Prodotto"
+                    view="_local">
+            <loader id="prodottoesDl">
+                <query>
+                    <![CDATA[select e from jscomponent_Prodotto e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="prodottoesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="prodottoesTable"
+                dataLoader="prodottoesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="prodottoesTable"
+                    width="100%"
+                    dataContainer="prodottoesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="codice"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="prodottoesTable.create"/>
+                <button id="editBtn" action="prodottoesTable.edit"/>
+                <button id="removeBtn" action="prodottoesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
